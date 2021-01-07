@@ -58,7 +58,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header"><a data-toggle="tooltip" data-placement="right" title="Cadastrar <?php echo $this->router->fetch_class();  ?>" class="btn btn-success float-right" href="<?php echo base_url($this->router->fetch_class(). '/core'); ?>">+ Novo</a></div>
+                                    <div class="card-header d-block"><a data-toggle="tooltip" data-placement="right" title="Cadastrar <?php echo $this->router->fetch_class();  ?>" class="btn bg-blue float-right text-white" href="<?php echo base_url($this->router->fetch_class(). '/core'); ?>">+ Novo</a></div>
                                     <div class="card-body">
                                         <table id="datatable" class="table data-table">
                                             <thead>
