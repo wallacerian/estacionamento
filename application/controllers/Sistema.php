@@ -7,7 +7,7 @@ class Sistema extends CI_Controller
 
 	public function _construct()
 	{
-		parent::_construct();
+		parent::__construct();
 
 		if (!$this->ion_auth->logged_in()) {
 			redirect('login');

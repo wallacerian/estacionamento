@@ -47,36 +47,71 @@ class Mensalistas extends CI_Controller
 	{
 		if (!$mensalista_id) {
 			//Cadastrando
+            
+			exit();
 		} else {
 			if (!$this->core_model->get_by_id('mensalistas', array('mensalista_id' => $mensalista_id))) {
 				$this->session->set_flashdata('error', 'Mensalista não encontrado');
 				redirect($this->router->fetch_class());
 			} else {
-				$this->form_validation->set_rules('mensalista_sobrenome', 'Nome', 'trim|required|min_length[4] |max_length[20]');
-				/*
-		[mensalista_nome] => Lucio
-            [mensalista_sobrenome] => Souza
-            [mensalista_data_nascimento] => 2020-03-13
-            [mensalista_cpf] => 359.731.420-19
-            [mensalista_rg] => 334.44644-12
-            [mensalista_email] => lucio@gmail.com
-            [mensalista_telefone_fixo] => 
-            [mensalista_telefone_movel] => (41) 9999-9999
-            [mensalista_cep] => 80530-000
-            [mensalista_endereco] => Rua de Curitiba
-            [mensalista_numero_endereco] => 45
-            [mensalista_bairro] => Centro
-            [mensalista_cidade] => Curitiba
-            [mensalista_estado] => PR
-            [mensalista_complemento] => 
-            [mensalista_ativo] => 1
-            [mensalista_dia_vencimento] => 31
-            [mensalista_obs] => */
+				$this->form_validation->set_rules('mensalista_nome', 'Nome', 'trim|required|min_length[4] |max_length[20]');
+				$this->form_validation->set_rules('mensalista_sobrenome', 'Sobrenome', 'trim|required|min_length[4] |max_length[150]');
+				$this->form_validation->set_rules('mensalista_data_nascimento', 'Data nascimento', 'required');
+				$this->form_validation->set_rules('mensalista_cpf', 'Data de nascimento', 'trim|required|exact_length[14]|callback_valida_cpf');
+				$this->form_validation->set_rules('mensalista_rg', 'RG', 'trim|required|min_length[12]|max_length[14]|callback_check_rg');
+				$this->form_validation->set_rules('mensalista_email', 'E-mail', 'trim|required|valid_email|max_length[50]|callback_check_email');
+
+				$mensalista_telefone_fixo = $this->input->post('mensalista_telefone_fixo');
+				if (!empty($mensalista_telefone_fixo)) {
+					$this->form_validation->set_rules('mensalista_telefone_fixo', 'telefone fixo', 'trim|exact_length[14]|callback_check_telefone_fixo');
+				}
+
+				$this->form_validation->set_rules('mensalista_telefone_movel', 'telefone movel', 'trim|required|min_length[14]|max_length[15]|callback_check_telefone_movel');
+				$this->form_validation->set_rules('mensalista_cep', 'CEP', 'trim|required|exact_length[9]');
+				$this->form_validation->set_rules('mensalista_endereco', 'Endereço', 'trim|required|min_length[4]|max_length[150]');
+				$this->form_validation->set_rules('mensalista_endereco', 'Número', 'trim|required|max_length[20]');
+				$this->form_validation->set_rules('mensalista_bairro', 'Bairro', 'trim|required|min_length[4]|max_length[45]');
+				$this->form_validation->set_rules('mensalista_cidade', 'Cidade', 'trim|required|min_length[4]|max_length[80]');
+				$this->form_validation->set_rules('mensalista_estado', 'UF', 'trim|required|exact_length[2]');
+				$this->form_validation->set_rules('mensalista_complemento', 'Complemento', 'trim|max_length[145]');
+				$this->form_validation->set_rules('mensalista_dia_vencimento', 'Dia vencimento mensalidade', 'trim|integer|greater_than[0]|less_than[32]');
+				$this->form_validation->set_rules('mensalista_observacao', 'observações', 'trim|max_length[500]');
 				if ($this->form_validation->run()) {
 
-					//echo '<pre>';
-					//print_r($this->input->post());
-					//exit();
+					echo '<pre>';
+					print_r($this->input->post());
+					exit();
+					$data = elements(
+
+						array(
+							'mensalista_nome',
+							'mensalista_sobrenome',
+							'mensalista_data_nascimento',
+							'mensalista_cpf',
+							'mensalista_rg',
+							'mensalista_email',
+							'mensalista_telefone_fixo',
+							'mensalista_telefone_movel',
+							'mensalista_cep',
+							'mensalista_endereco',
+							'mensalista_numero_endereco',
+							'mensalista_bairro',
+							'mensalista_cidade',
+							'mensalista_estado',
+							'mensalista_complemento',
+							'mensalista_ativo',
+							'mensalista_dia_vencimento',
+							'mensalista_observacao',
+						),
+						$this->input->post()
+					);
+
+					$data = html_escape($data);
+
+					
+					$this->core_model->update('mensalistas', $data, array('mensalista_id' => $mensalista_id));
+					redirect($this->router->fetch_class());
+					
 				} else {
 
 					//Erro de validaçao
@@ -101,6 +136,91 @@ class Mensalistas extends CI_Controller
 					$this->load->view('layout/footer');
 				}
 			}
+		}
+	}
+
+	public function valida_cpf($cpf)
+	{
+
+		if ($this->input->post('mensalista_id')) {
+
+			$mensalista_id = $this->input->post('mensalista_id');
+
+			if ($this->core_model->get_by_id('mensalistas', array('mensalista_id !=' => $mensalista_id, 'mensalista_cpf' => $cpf))) {
+				$this->form_validation->set_message('valida_cpf', 'O campo {field} já existe, ele deve ser único');
+				return FALSE;
+			}
+		}
+
+		$cpf = str_pad(preg_replace('/[^0-9]/', '', $cpf), 11, '0', STR_PAD_LEFT);
+		// Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
+		if (strlen($cpf) != 11 || $cpf == '00000000000' || $cpf == '11111111111' || $cpf == '22222222222' || $cpf == '33333333333' || $cpf == '44444444444' || $cpf == '55555555555' || $cpf == '66666666666' || $cpf == '77777777777' || $cpf == '88888888888' || $cpf == '99999999999') {
+
+			$this->form_validation->set_message('valida_cpf', 'Por favor digite um CPF válido');
+			return FALSE;
+		} else {
+			// Calcula os números para verificar se o CPF é verdadeiro
+			for ($t = 9; $t < 11; $t++) {
+				for ($d = 0, $c = 0; $c < $t; $c++) {
+					$d += $cpf[$c] * (($t + 1) - $c); //se PHP version < 7.4, $cpf{$c}
+				}
+				$d = ((10 * $d) % 11) % 10;
+				if ($cpf[$c] != $d) {
+					$this->form_validation->set_message('valida_cpf', 'Por favor digite um CPF válido');
+					return FALSE;
+				}
+			}
+			return TRUE;
+		}
+	}
+	public function check_rg($mensalista_rg)
+	{
+
+		$mensalista_id = $this->input->post('mensalista_id');
+
+		if ($this->core_model->get_by_id('mensalistas', array('mensalista_id !=' => $mensalista_id, 'mensalista_rg' => $mensalista_rg))) {
+			$this->form_validation->set_message('check_rg', 'O campo {field} já existe, ele deve ser único');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+
+	public function check_email($mensalista_email)
+	{
+
+		$mensalista_id = $this->input->post('mensalista_id');
+
+		if ($this->core_model->get_by_id('mensalistas', array('mensalista_id !=' => $mensalista_id, 'mensalista_email' => $mensalista_email))) {
+			$this->form_validation->set_message('check_email', 'O campo {field} já existe, ele deve ser único');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+	public function check_telefone_fixo($mensalista_telefone_fixo)
+	{
+
+		$mensalista_id = $this->input->post('mensalista_id');
+
+		if ($this->core_model->get_by_id('mensalistas', array('mensalista_id !=' => $mensalista_id, 'mensalista_telefone_fixo' => $mensalista_telefone_fixo))) {
+			$this->form_validation->set_message('check_telefone_fixo', 'O campo {field} já existe, ele deve ser único');
+			return FALSE;
+		} else {
+			return TRUE;
+		}
+	}
+
+	public function check_telefone_movel($mensalista_telefone_movel)
+	{
+
+		$mensalista_id = $this->input->post('mensalista_id');
+
+		if ($this->core_model->get_by_id('mensalistas', array('mensalista_id !=' => $mensalista_id, 'mensalista_telefone_movel' => $mensalista_telefone_movel))) {
+			$this->form_validation->set_message('check_telefone_movel', 'O campo {field} já existe, ele deve ser único');
+			return FALSE;
+		} else {
+			return TRUE;
 		}
 	}
 }
