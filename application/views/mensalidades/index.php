@@ -62,29 +62,33 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Nome</th>
+							<th>Mensalista</th>
 							<th>CPF</th>
-							<th>E-mail</th>
-							<th>Celular</th>
-							<th>Ativo</th>
+							<th>Categoria</th>
+							<th>Valor mensalidade</th>
+							<th>Data vencimento</th>
+							<th>Data Pagamento</th>
+							<th>Status</th>
 							<th class="nosort text-right pr-25">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($mensalistas as $mensalista) : ?>
+						<?php foreach ($mensalidades as $mensalidade) : ?>
 							<tr>
-								<td><?php echo $mensalista->mensalista_id; ?></td>
-								<td><?php echo $mensalista->mensalista_nome; ?></td>
-								<td><?php echo $mensalista->mensalista_cpf; ?></td>
-								<td><?php echo $mensalista->mensalista_email; ?></td>
-								<td><?php echo $mensalista->mensalista_telefone_movel; ?></td>
-								<td><?php echo ($mensalista->mensalista_ativo == 1 ? '<span class="badge badge-pill badge-success mb-1"><i class="fas fa-lock-open"></i>&nbsp;Sim</span>' : '<span class="badge badge-pill badge-warning mb-1"><i class="fas fa-lock"></i>&nbsp;Não</span>'); ?></td>
+								<td><?php echo $mensalidade->mensalidade_id; ?></td>
+								<td><i class="ik ik-eye text-info"></i>&nbsp;<a data-toggle="tooltip" data-placement="bottom" title="Visualizar mensalista <?php echo $mensalidade->mensalista_nome; ?>" href="<?php echo base_url('mensalistas/core/'.$mensalidade->mensalista_id); ?>"><?php echo $mensalidade->mensalista_nome; ?></a></td>
+								<td><?php echo $mensalidade->mensalista_cpf; ?></td>
+								<td><?php echo $mensalidade->precificacao_categoria; ?></td>
+								<td><?php echo 'R$&nbsp'. $mensalidade->precificacao_valor_mensalidade;?></td>
+								<td><?php echo  formata_data_banco_sem_hora($mensalidade->mensalidade_data_vencimento); ?></td>
+								<td><?php echo ($mensalidade->mensalidade_status == 1 ? formata_data_banco_sem_hora($mensalidade->mensalidade_data_pagamento) : 'Em aberto'); ?></td>
+								<td><?php echo ($mensalidade->mensalidade_status == 1 ? '<span class="badge badge-pill badge-success mb-1">Paga</span>' : '<span class="badge badge-pill badge-warning mb-1">Em aberto</span>'); ?></td>
 								<td class="text-right">
-									<a data-toggle="tooltip" data-placement="bottom" title="Editar <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/core/' . $mensalista->mensalista_id); ?>" class="btn btn-icon btn-primary"><i class="ik ik-edit-2"></i></a>
-									<button title="Excluir <?php echo $this->router->fetch_class();  ?>" class="btn btn-icon btn-danger" data-toggle="modal" data-target="#mensalista-<?php echo $mensalista->mensalista_id; ?>"><i class="ik ik-trash-2"></i></button>
+									<a data-toggle="tooltip" data-placement="bottom" title="<?php echo ($mensalidade->mensalidade_status == 1 ? 'Visualizar' : 'Editar') ?> <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/core/' . $mensalidade->mensalidade_id); ?>" class="btn btn-icon btn-primary"><i class="<?php echo ($mensalidade->mensalidade_status == 1 ? 'ik ik-eye' : 'ik ik-edit-2') ?>"></i></a>
+									<button title="Excluir <?php echo $this->router->fetch_class();  ?>" class="btn btn-icon btn-danger" data-toggle="modal" data-target="#mensalidade-<?php echo $mensalidade->mensalidade_id; ?>"><i class="ik ik-trash-2"></i></button>
 								</td>
 							</tr>
-							<div class="modal fade" id="mensalista-<?php echo $mensalista->mensalista_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+							<div class="modal fade" id="mensalidade-<?php echo $mensalidade->mensalidade_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
@@ -96,7 +100,7 @@
 										</div>
 										<div class="modal-footer">
 											<button data-toggle="tooltip" data-placement="bottom" title="Cancelar exclusão" type="button" class="btn btn-secondary" data-dismiss="modal">Não, voltar</button>
-											<a data-toggle="tooltip" data-placement="bottom" title="Excluir <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/del/' . $mensalista->mensalista_id); ?>" class="btn  btn-danger">Sim, excluir</a>
+											<a data-toggle="tooltip" data-placement="bottom" title="Excluir <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/del/' . $mensalidade->mensalidade_id); ?>" class="btn  btn-danger">Sim, excluir</a>
 										</div>
 									</div>
 								</div>

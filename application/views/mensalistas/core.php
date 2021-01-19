@@ -129,13 +129,13 @@
 
 											<?php if (isset($mensalista)) : ?>
 
-												<option value="0" <?php echo ($mensalista->mensalista_ativo == 0 ? 'selected' : '') ?>>Não</option>
+												<option value="0" <?php echo ($mensalista->mensalista_ativo == 0 ? 'selected' : '') ?>>não</option>
 												<option value="1" <?php echo ($mensalista->mensalista_ativo == 1 ? 'selected' : '') ?>>sim</option>
 
 											<?php else : ?>
 
-												<option value="0">Não</option>
-												<option value="1">Sim</option>
+												<option value="0">não</option>
+												<option value="1">sim</option>
 
 											<?php endif; ?>
 
@@ -149,7 +149,7 @@
 									<div class="col-md-6 mb-20">
 										<label>Observações</label>
 
-										<textarea rows="1" class="form-control" name="mensalista_observacao" <?php echo (isset($mensalista) ? $mensalista->mensalista_observacao : set_value('mensalista_observacao')); ?>></textarea>
+										<textarea rows="1" class="form-control" name="mensalista_observacao"><?php echo (isset($mensalista) ? $mensalista->mensalista_observacao : set_value('mensalista_observacao')); ?></textarea>
 									    <?php echo form_error('mensalista_observacao', '<div class="text-danger">', '</div>'); ?>
 									</div>
 								</div>

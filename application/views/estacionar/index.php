@@ -62,29 +62,29 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Nome</th>
-							<th>CPF</th>
-							<th>E-mail</th>
-							<th>Celular</th>
-							<th>Ativo</th>
+							<th>Categoria</th>
+							<th>Valor hora</th>
+							<th>Placa</th>
+							<th>Forma de pagamento</th>
+							<th>Status</th>
 							<th class="nosort text-right pr-25">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($mensalistas as $mensalista) : ?>
+						<?php foreach ($estacionados as $estacionado) : ?>
 							<tr>
-								<td><?php echo $mensalista->mensalista_id; ?></td>
-								<td><?php echo $mensalista->mensalista_nome; ?></td>
-								<td><?php echo $mensalista->mensalista_cpf; ?></td>
-								<td><?php echo $mensalista->mensalista_email; ?></td>
-								<td><?php echo $mensalista->mensalista_telefone_movel; ?></td>
-								<td><?php echo ($mensalista->mensalista_ativo == 1 ? '<span class="badge badge-pill badge-success mb-1"><i class="fas fa-lock-open"></i>&nbsp;Sim</span>' : '<span class="badge badge-pill badge-warning mb-1"><i class="fas fa-lock"></i>&nbsp;Não</span>'); ?></td>
+								<td><?php echo $estacionado->estacionar_id; ?></td>
+								<td><?php echo $estacionado->precificacao_categoria; ?></td>
+								<td><?php echo 'R$&nbsp' . $estacionado->precificacao_valor_hora;?></td>
+								<td><?php echo  $estacionado->estacionar_placa_veiculo;?></td>
+								<td><?php echo  $estacionado->forma_pagamento_nome;?></td>
+								<td><?php echo ($estacionado->estacionar_status == 1 ? '<span class="badge badge-pill badge-success mb-1">Paga</span>' : '<span class="badge badge-pill badge-warning mb-1">Em aberto</span>'); ?></td>
 								<td class="text-right">
-									<a data-toggle="tooltip" data-placement="bottom" title="Editar <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/core/' . $mensalista->mensalista_id); ?>" class="btn btn-icon btn-primary"><i class="ik ik-edit-2"></i></a>
-									<button title="Excluir <?php echo $this->router->fetch_class();  ?>" class="btn btn-icon btn-danger" data-toggle="modal" data-target="#mensalista-<?php echo $mensalista->mensalista_id; ?>"><i class="ik ik-trash-2"></i></button>
+									<a data-toggle="tooltip" data-placement="bottom" title="<?php echo ($estacionado->estacionar_status == 1 ? 'Visualizar' : 'Editar') ?> <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/core/' . $estacionado->estacionar_id); ?>" class="btn btn-icon btn-primary"><i class="<?php echo ($estacionado->estacionar_status == 1 ? 'ik ik-eye' : 'ik ik-edit-2') ?>"></i></a>
+									<button title="Excluir <?php echo $this->router->fetch_class();  ?>" class="btn btn-icon btn-danger" data-toggle="modal" data-target="#estacionado-<?php echo $estacionado->estacionar_id; ?>"><i class="ik ik-trash-2"></i></button>
 								</td>
 							</tr>
-							<div class="modal fade" id="mensalista-<?php echo $mensalista->mensalista_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+							<div class="modal fade" id="estacionado-<?php echo $estacionado->estacionar_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
@@ -96,7 +96,7 @@
 										</div>
 										<div class="modal-footer">
 											<button data-toggle="tooltip" data-placement="bottom" title="Cancelar exclusão" type="button" class="btn btn-secondary" data-dismiss="modal">Não, voltar</button>
-											<a data-toggle="tooltip" data-placement="bottom" title="Excluir <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/del/' . $mensalista->mensalista_id); ?>" class="btn  btn-danger">Sim, excluir</a>
+											<a data-toggle="tooltip" data-placement="bottom" title="Excluir <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/del/' . $estacionado->estacionar_id); ?>" class="btn  btn-danger">Sim, excluir</a>
 										</div>
 									</div>
 								</div>
@@ -119,3 +119,5 @@
 </footer>
 
 </div>
+
+

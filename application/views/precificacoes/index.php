@@ -78,7 +78,7 @@
 								<td><?php echo 'R$&nbsp;'.$categoria->precificacao_valor_hora; ?></td>
 								<td><?php echo 'R$&nbsp;'.$categoria->precificacao_valor_mensalidade; ?></td>
 								<td class="text-center"><?php echo $categoria->precificacao_numero_vagas; ?></td>
-								<td><?php echo ($categoria->precificacao_ativa == 1 ? '<span class="badge badge-pill badge-warning mb-1"><i class="fas fa-lock"></i>&nbsp;Não</span>':'<span class="badge badge-pill badge-success mb-1"><i class="fas fa-lock-open"></i>&nbsp;Sim</span>'); ?></td>
+								<td><?php echo ($categoria->precificacao_ativa == 1 ? '<span class="badge badge-pill badge-success mb-1"><i class="fas fa-lock-open"></i>&nbsp;Sim</span>' : '<span class="badge badge-pill badge-warning mb-1"><i class="fas fa-lock"></i>&nbsp;Não</span>'); ?></td>
 								<td class="text-right">
 									<a data-toggle="tooltip" data-placement="bottom" title="Editar <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/core/' . $categoria->precificacao_id); ?>" class="btn btn-icon btn-primary"><i class="ik ik-edit-2"></i></a>
 									<button title="Excluir <?php echo $this->router->fetch_class();  ?>" class="btn btn-icon btn-danger" data-toggle="modal" data-target="#categoria-<?php echo $categoria->precificacao_id; ?>"><i class="ik ik-trash-2"></i></button>

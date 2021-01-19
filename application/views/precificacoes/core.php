@@ -67,8 +67,8 @@
 
 											<?php if (isset($precificacao)) : ?>
 
-												<option value="0" <?php echo ($precificacao->precificacao_ativa == 0 ? 'selected' : '') ?>>Sim</option>
-												<option value="1" <?php echo ($precificacao->precificacao_ativa == 1 ? 'selected' : '') ?>>Não</option>
+												<option value="0" <?php echo ($precificacao->precificacao_ativa == 0 ? 'selected' : '') ?>>não</option>
+												<option value="1" <?php echo ($precificacao->precificacao_ativa == 1 ? 'selected' : '') ?>>sim</option>
 
 											<?php else : ?>
 
