@@ -39,9 +39,7 @@
 						<div class="card-header"><?php echo (isset($estacionado) ? '<i class="ik ik-calendar ik-2x"></i>&nbsp;Data da última alteração: &nbsp;' . formata_data_banco_com_hora($estacionado->estacionar_data_alteracao) : ''); ?></div>
 						  <div class="card-body">
 						   <form class="forms-sample" name="form_core" method="post">
-
 							<div class="row mb-3">
-
 								<div class="col-md-4 mb-3">
 									<label for="">Categoria</label>
 									<select class="form-control precificacao" name="estacionar_precificacao_id" <?php echo (isset($estacionado) ? 'disabled' : '') ?>>
@@ -171,7 +169,7 @@
 													<?php if ($estacionado): ?>
 
 														<option value="<?php echo $forma->forma_pagamento_id; ?>" <?php echo ($forma->forma_pagamento_id == $estacionado->estacionar_forma_pagamento_id ? 'selected' : '' ) ?> "><?php echo $forma->forma_pagamento_nome; ?></option>
-
+                                                    
 
 													<?php endif; ?>
 

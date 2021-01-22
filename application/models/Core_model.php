@@ -33,10 +33,15 @@ class Core_model extends CI_MODEL
 			return FALSE;
 		}
 	}
-	public function insert($table = NULL, $data = NULL)
+	public function insert($table = NULL, $data = NULL, $get_last_id = NULL)
 	{
 		if ($table && $this->db->table_exists($table) && is_array($data)) {
 			$this->db->insert($table, $data);
+			//Armazenando na sessão o últi id inserido na tabela
+			if($get_last_id){
+
+				$this->session->set_userdata('last_id', $this->db->insert_id());
+			}
 			if ($this->db->affected_rows() > 0) {
 				$this->session->set_flashdata('sucesso', 'dados slavos com sucesso!');
 			} else {
