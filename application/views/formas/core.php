@@ -52,8 +52,8 @@
 
 											<?php if (isset($forma)) : ?>
 
-												<option value="1" <?php echo ($forma->forma_pagamento_ativa == 1 ? 'selected' : '') ?>>não</option>
-												<option value="0" <?php echo ($forma->forma_pagamento_ativa == 0 ? 'selected' : '') ?>>sim</option>
+												<option value="1" <?php echo ($forma->forma_pagamento_ativa == 1 ? 'selected' : '') ?>>sim</option>
+												<option value="0" <?php echo ($forma->forma_pagamento_ativa == 0 ? 'selected' : '') ?>>não</option>
 
 											<?php else : ?>
 

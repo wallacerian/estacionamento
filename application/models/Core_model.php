@@ -43,7 +43,7 @@ class Core_model extends CI_MODEL
 				$this->session->set_userdata('last_id', $this->db->insert_id());
 			}
 			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('sucesso', 'dados slavos com sucesso!');
+				$this->session->set_flashdata('sucesso', 'dados salvos com sucesso!');
 			} else {
 				$this->session->set_flashdata('error', 'Não foi possivel! salvar os dados!');
 			}
@@ -60,7 +60,7 @@ class Core_model extends CI_MODEL
 
 				$this->session->set_flashdata('sucesso', 'Dados salvos com sucesso!');
 			} else {
-				$this->session->set_flashdata('error', 'não foi possível salavar os dados!');
+				$this->session->set_flashdata('error', 'não foi possível salvar os dados!');
 			}
 		} else {
 			return FALSE;

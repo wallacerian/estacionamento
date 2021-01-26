@@ -81,8 +81,8 @@
 				<div class="card-body">
 					<div class="row align-items-center">
 						<div class="col">
-						   <h6 class="mb-25">Novo ticket</h6>
-						   <a class="btn bg-yellow text-white" href="<?php echo base_url($this->router->fetch_class() . '/core/'); ?>">Novo</a>
+							<h6 class="mb-25">Novo ticket</h6>
+							<a class="btn bg-yellow text-white" href="<?php echo base_url($this->router->fetch_class() . '/core/'); ?>">Novo</a>
 						</div>
 						<div class="col-auto">
 							<i class="fas fa-plus bg-yellow"></i>

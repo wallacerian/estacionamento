@@ -39,6 +39,20 @@
 				</div>
 		</div>
 	<?php endif; ?>
+
+	<?php if ($message = $this->session->flashdata('info')) : ?>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="alert bg-info alert-info text-white alert-dismissible fade show" role=alert>
+							<strong><?php echo $message ?></strong>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<i class="ik ik-x"></i>
+							</button>
+						</div>
+					</div>
+				</div>
+		</div>
+	<?php endif; ?>
 	<?php if ($message = $this->session->flashdata('error')) : ?>
 		<div class="row">
 			<div class="col-md-12">
@@ -72,7 +86,7 @@
 							<tr>
 								<td><?php echo $forma->forma_pagamento_id; ?></td>
 								<td><?php echo $forma->forma_pagamento_nome; ?></td>
-								<td><?php echo ($forma->forma_pagamento_ativa == 1 ? '<span class="badge badge-pill badge-warning mb-1"><i class="fas fa-lock"></i>&nbsp;Não</span>':'<span class="badge badge-pill badge-success mb-1"><i class="fas fa-lock-open"></i>&nbsp;Sim</span>'); ?></td>
+								<td><?php echo ($forma->forma_pagamento_ativa == 0 ? '<span class="badge badge-pill badge-warning mb-1"><i class="fas fa-lock"></i>&nbsp;Não</span>' : '<span class="badge badge-pill badge-success mb-1"><i class="fas fa-lock-open"></i>&nbsp;Sim</span>'); ?></td>
 								<td class="text-right">
 									<a data-toggle="tooltip" data-placement="bottom" title="Editar <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/core/' . $forma->forma_pagamento_id); ?>" class="btn btn-icon btn-primary"><i class="ik ik-edit-2"></i></a>
 									<button title="Excluir <?php echo $this->router->fetch_class();  ?>" class="btn btn-icon btn-danger" data-toggle="modal" data-target="#forma-<?php echo $forma->forma_pagamento_id; ?>"><i class="ik ik-trash-2"></i></button>

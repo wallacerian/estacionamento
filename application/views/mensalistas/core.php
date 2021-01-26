@@ -150,7 +150,7 @@
 										<label>Observações</label>
 
 										<textarea rows="1" class="form-control" name="mensalista_observacao"><?php echo (isset($mensalista) ? $mensalista->mensalista_observacao : set_value('mensalista_observacao')); ?></textarea>
-									    <?php echo form_error('mensalista_observacao', '<div class="text-danger">', '</div>'); ?>
+										<?php echo form_error('mensalista_observacao', '<div class="text-danger">', '</div>'); ?>
 									</div>
 								</div>
 								<?php if (isset($mensalista)) : ?>
