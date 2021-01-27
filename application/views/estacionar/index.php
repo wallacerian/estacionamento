@@ -58,53 +58,55 @@
 		<div class="card">
 			<div class="card-header d-block"><a data-toggle="tooltip" data-placement="right" title="Cadastrar <?php echo $this->router->fetch_class();  ?>" class="btn bg-blue float-right text-white" href="<?php echo base_url($this->router->fetch_class() . '/core'); ?>">+ Novo</a></div>
 			<div class="card-body">
-				<table id="datatable" class="table data-table">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Categoria</th>
-							<th>Valor hora</th>
-							<th>Placa</th>
-							<th>Forma de pagamento</th>
-							<th>Status</th>
-							<th class="nosort text-right pr-25">Ações</th>
-						</tr>
-					</thead>
-					<tbody>
-						<?php foreach ($estacionados as $estacionado) : ?>
+				<div class="table-responsive-sm">
+					<table class="table data-table table-sm pl-20 pr-20">
+						<thead>
 							<tr>
-								<td><?php echo $estacionado->estacionar_id; ?></td>
-								<td><?php echo $estacionado->precificacao_categoria; ?></td>
-								<td><?php echo 'R$&nbsp' . $estacionado->precificacao_valor_hora; ?></td>
-								<td><?php echo  $estacionado->estacionar_placa_veiculo; ?></td>
-								<td><?php echo ($estacionado->estacionar_status == 1 ?  $estacionado->forma_pagamento_nome : 'Em aberto'); ?></td>
-								<td><?php echo ($estacionado->estacionar_status == 1 ? '<span class="badge badge-pill badge-success mb-1">Paga</span>' : '<span class="badge badge-pill badge-warning mb-1">Em aberto</span>'); ?></td>
-								<td class="text-right">
-									<a data-toggle="tooltip" data-placement="bottom" title="Imprimir ticket" target="_blank" class="btn btn-icon bg-dark text-white" href="<?php echo base_url($this->router->fetch_class() . '/pdf/' . $estacionado->estacionar_id); ?>"><i class="fas fa-print"></i></a>
-									<a data-toggle="tooltip" data-placement="bottom" title="<?php echo ($estacionado->estacionar_status == 1 ? 'Visualizar' : 'Encerrar') ?> ticket" href="<?php echo base_url($this->router->fetch_class() . '/core/' . $estacionado->estacionar_id); ?>" class="btn btn-icon btn-primary"><i class="<?php echo ($estacionado->estacionar_status == 1 ? 'ik ik-eye' : 'ik ik-edit-2') ?>"></i></a>
-									<button title="Excluir <?php echo $this->router->fetch_class();  ?>" class="btn btn-icon btn-danger" data-toggle="modal" data-target="#estacionado-<?php echo $estacionado->estacionar_id; ?>"><i class="ik ik-trash-2"></i></button>
-								</td>
+								<th>#</th>
+								<th>Categoria</th>
+								<th>Valor hora</th>
+								<th>Placa</th>
+								<th>Forma de pagamento</th>
+								<th>Status</th>
+								<th class="nosort text-right pr-25">Ações</th>
 							</tr>
-							<div class="modal fade" id="estacionado-<?php echo $estacionado->estacionar_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalCenterLabel"><i class="fas fa-exclamation-triangle text-danger"></i>&nbsp; tem certeza da exclusão do registro?</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										</div>
-										<div class="modal-body">
-											<p>Se deseja realmente excluir o register_shutdown_function, clique em <strong>Sim, excluir</strong></p>
-										</div>
-										<div class="modal-footer">
-											<button data-toggle="tooltip" data-placement="bottom" title="Cancelar exclusão" type="button" class="btn btn-secondary" data-dismiss="modal">Não, voltar</button>
-											<a data-toggle="tooltip" data-placement="bottom" title="Excluir <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/del/' . $estacionado->estacionar_id); ?>" class="btn  btn-danger">Sim, excluir</a>
+						</thead>
+						<tbody>
+							<?php foreach ($estacionados as $estacionado) : ?>
+								<tr>
+									<td><?php echo $estacionado->estacionar_id; ?></td>
+									<td><?php echo $estacionado->precificacao_categoria; ?></td>
+									<td><?php echo 'R$&nbsp' . $estacionado->precificacao_valor_hora; ?></td>
+									<td><?php echo  $estacionado->estacionar_placa_veiculo; ?></td>
+									<td><?php echo ($estacionado->estacionar_status == 1 ?  $estacionado->forma_pagamento_nome : 'Em aberto'); ?></td>
+									<td><?php echo ($estacionado->estacionar_status == 1 ? '<span class="badge badge-pill badge-success mb-1">Paga</span>' : '<span class="badge badge-pill badge-warning mb-1">Em aberto</span>'); ?></td>
+									<td class="text-right">
+										<a data-toggle="tooltip" data-placement="bottom" title="Imprimir ticket" target="_blank" class="btn btn-icon bg-dark text-white" href="<?php echo base_url($this->router->fetch_class() . '/pdf/' . $estacionado->estacionar_id); ?>"><i class="fas fa-print"></i></a>
+										<a data-toggle="tooltip" data-placement="bottom" title="<?php echo ($estacionado->estacionar_status == 1 ? 'Visualizar' : 'Encerrar') ?> ticket" href="<?php echo base_url($this->router->fetch_class() . '/core/' . $estacionado->estacionar_id); ?>" class="btn btn-icon btn-primary"><i class="<?php echo ($estacionado->estacionar_status == 1 ? 'ik ik-eye' : 'ik ik-edit-2') ?>"></i></a>
+										<button title="Excluir <?php echo $this->router->fetch_class();  ?>" class="btn btn-icon btn-danger" data-toggle="modal" data-target="#estacionado-<?php echo $estacionado->estacionar_id; ?>"><i class="ik ik-trash-2"></i></button>
+									</td>
+								</tr>
+								<div class="modal fade" id="estacionado-<?php echo $estacionado->estacionar_id ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalCenterLabel"><i class="fas fa-exclamation-triangle text-danger"></i>&nbsp; tem certeza da exclusão do registro?</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											</div>
+											<div class="modal-body">
+												<p>Se deseja realmente excluir o register_shutdown_function, clique em <strong>Sim, excluir</strong></p>
+											</div>
+											<div class="modal-footer">
+												<button data-toggle="tooltip" data-placement="bottom" title="Cancelar exclusão" type="button" class="btn btn-secondary" data-dismiss="modal">Não, voltar</button>
+												<a data-toggle="tooltip" data-placement="bottom" title="Excluir <?php echo $this->router->fetch_class();  ?>" href="<?php echo base_url($this->router->fetch_class() . '/del/' . $estacionado->estacionar_id); ?>" class="btn  btn-danger">Sim, excluir</a>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						<?php endforeach; ?>
-					</tbody>
-				</table>
+							<?php endforeach; ?>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -58,7 +58,8 @@
 		<div class="card">
 			<div class="card-header d-block"><a data-toggle="tooltip" data-placement="right" title="Cadastrar <?php echo $this->router->fetch_class();  ?>" class="btn bg-blue float-right text-white" href="<?php echo base_url($this->router->fetch_class() . '/core'); ?>">+ Novo</a></div>
 			<div class="card-body">
-				<table id="datatable" class="table data-table">
+				<div class="table-responsive-sm"></div>
+				<table id="datatable" class="table data-table table-sm pl-20 pr-20">
 					<thead>
 						<tr>
 							<th>#</th>
