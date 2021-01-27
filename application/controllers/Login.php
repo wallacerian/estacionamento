@@ -4,10 +4,8 @@ defined('BASEPATH') or exit('Ação não permitida');
 
 class Login extends CI_Controller
 {
-
 	public function index()
 	{
-
 		$data = array(
 			'titulo' => 'login',
 		);

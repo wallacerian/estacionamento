@@ -43,7 +43,6 @@
 		</div>
 	<?php endif; ?>
 
-
 	<div class="row">
 		<!-- imprestion, goal, impect start -->
 		<div class="col-xl-4 col-md-12">
@@ -95,9 +94,6 @@
 	</div>
 	</div>
 </div>
-
-
-
 
 <footer class="footer">
 	<div class="w-100 clearfix">

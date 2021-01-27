@@ -4,11 +4,10 @@ defined('BASEPATH') or exit('Ação não permitida');
 
 class Home extends CI_Controller
 {
-
 	public function __construct()
 	{
 
-		parent::__construct();
+		parent:: __construct();
 		if (!$this->ion_auth->logged_in()) {
 			redirect('login');
 		}
@@ -16,7 +15,6 @@ class Home extends CI_Controller
 
 	public function index()
 	{
-
 		$data = array(
 			'titulo' => 'Home',
 			'sub_titulo' => 'Seja muito bem vindo(a) ao Park Now!',
@@ -37,7 +35,6 @@ class Home extends CI_Controller
 			'numero_vagas_pequeno' => $this->estacionar_model->get_numero_vagas(1), //Veiculo pequeno
 			'vagas_ocupadas_pequeno' => $this->core_model->get_all('estacionar', array('estacionar_status' => 0, 'estacionar_precificacao_id' => 1)),
 
-
 			'numero_vagas_medio' => $this->estacionar_model->get_numero_vagas(2), //Veiculo medio
 			'vagas_ocupadas_medio' => $this->core_model->get_all('estacionar', array('estacionar_status' => 0, 'estacionar_precificacao_id' => 2)),
 
@@ -46,8 +43,6 @@ class Home extends CI_Controller
 
 			'numero_vagas_moto' => $this->estacionar_model->get_numero_vagas(4), //Veiculo moto
 			'vagas_ocupadas_moto' => $this->core_model->get_all('estacionar', array('estacionar_status' => 0, 'estacionar_precificacao_id' => 4)),
-
-
 
 			//informaçoes dos cards
 			'numero_total_vagas' => $this->home_model->get_total_vagas(),
@@ -98,11 +93,6 @@ class Home extends CI_Controller
 
 			$data['notificacoes'] = $notificacoes;
 		}
-
-		//	echo '<pre>';
-		//	print_r($data['total_mensalistas']);
-		//exit();
-
 
 		$this->load->view('layout/header', $data);
 		$this->load->view('home/index');

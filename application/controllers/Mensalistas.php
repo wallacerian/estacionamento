@@ -14,7 +14,6 @@ class Mensalistas extends CI_Controller
 		}
 	}
 
-
 	public function index()
 	{
 
@@ -32,12 +31,6 @@ class Mensalistas extends CI_Controller
 			),
 			'mensalistas' => $this->core_model->get_all('mensalistas'),
 		);
-
-
-
-		//echo '<pre>';
-		//print_r($data['mensalistas']);
-		//exit();
 
 		$this->load->view('layout/header', $data);
 		$this->load->view('mensalistas/index');
@@ -218,11 +211,6 @@ class Mensalistas extends CI_Controller
 						'mensalista' => $this->core_model->get_by_id('mensalistas', array('mensalista_id' => $mensalista_id)),
 					);
 
-
-					//echo '<pre>';
-					//print_r($data['mensalista']);
-					//exit();
-
 					$this->load->view('layout/header', $data);
 					$this->load->view('mensalistas/core');
 					$this->load->view('layout/footer');
@@ -305,7 +293,6 @@ class Mensalistas extends CI_Controller
 
 	public function check_telefone_movel($mensalista_telefone_movel)
 	{
-
 		$mensalista_id = $this->input->post('mensalista_id');
 
 		if ($this->core_model->get_by_id('mensalistas', array('mensalista_id !=' => $mensalista_id, 'mensalista_telefone_movel' => $mensalista_telefone_movel))) {
@@ -315,16 +302,12 @@ class Mensalistas extends CI_Controller
 			return TRUE;
 		}
 	}
-
 	public function  del($mensalista_id = NULL)
 	{
 		if (!$this->ion_auth->is_admin()) {
 			$this->session->set_flashdata('', 'Você Não tem permissão para excluir Mensalistas');
 			redirect('/');
 		}
-
-
-
 		if (!$mensalista_id || !$this->core_model->get_by_id('mensalistas', array('mensalista_id' => $mensalista_id))) {
 			$this->session->set_flashdata('error', 'Mensalista não encontrado');
 			redirect($this->router->fetch_class());

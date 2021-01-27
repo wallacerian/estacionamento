@@ -16,7 +16,6 @@ class Mensalidades extends CI_Controller
 		$this->load->model('mensalidades_model');
 	}
 
-
 	public function index()
 	{
 
@@ -35,12 +34,6 @@ class Mensalidades extends CI_Controller
 			'mensalidades' => $this->mensalidades_model->get_all('mensalidades'),
 		);
 
-
-
-		//echo '<pre>';
-		//pint_r($data['mensalidades']);
-		//exit();
-
 		$this->load->view('layout/header', $data);
 		$this->load->view('mensalidades/index');
 		$this->load->view('layout/footer');
@@ -56,8 +49,6 @@ class Mensalidades extends CI_Controller
 			$this->form_validation->set_rules('mensalidade_data_vencimento', 'Data vencimento', 'required|callback_check_existe_mensalidade|callback_check_data_valida|callback_check_data_com_dia_vencimento');
 
 			if ($this->form_validation->run()) {
-
-
 
 				$data = elements(
 					array(
@@ -116,15 +107,6 @@ class Mensalidades extends CI_Controller
 
 				$this->form_validation->set_rules('mensalidade_precificacao_id', 'Categoria', 'required');
 				if ($this->form_validation->run()) {
-
-					/*	[mensalidade_mensalista_dia_vencimento] => 5
-					[mensalidade_precificacao_id] => 1 130,00
-					[mensalidade_valor_mensalidade] => 130,00
-					[mensalidade_status] => 0
-					[mensalidade_id] => 1
-					[mensalidade_mensalista_hidden_id] => 1
-					[mensalidade_precificacao_hidden_id] => 1*/
-
 
 					$data = elements(
 						array(
@@ -211,11 +193,8 @@ class Mensalidades extends CI_Controller
 			/* Faz o explode da $mensalidade_data_vencimento do post */
 			$mensalidade_data_vencimento_post = explode('-', $mensalidade_data_vencimento);
 
-
 			/* Faz o explode da $mensalidade_data_vencimento vinda do banco */
 			$mensalidade_data_vencimento_user = explode('-', $mensalidade_user->mensalidade_data_vencimento);
-
-
 
 			if ($mensalidade_data_vencimento_post[0] == $mensalidade_data_vencimento_user[0] && $mensalidade_data_vencimento_post[1] == $mensalidade_data_vencimento_user[1]) {
 				$this->form_validation->set_message('check_existe_mensalidade', 'Para o mensalista informado, já existe uma mensalidade para essa data');
@@ -230,7 +209,6 @@ class Mensalidades extends CI_Controller
 
 	public function check_data_valida($mensalidade_data_vencimento)
 	{
-
 		$data_atual = strtotime(date('Y-m-d'));
 
 		$mensalidade_data_vencimento = strtotime($mensalidade_data_vencimento);

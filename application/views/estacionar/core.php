@@ -32,7 +32,6 @@
 				</div>
 			</div>
 
-
 			<div class="row">
 				<div class="col-md-12">
 					<div class="card">
@@ -146,8 +145,6 @@
 
 										<input type="text" class="form-control" name="estacionar_tempo_decorrido" value="<?php echo (isset($estacionado) && $estacionado->estacionar_status == 1 ? ($estacionado->estacionar_tempo_decorrido) : $tempo_decorrido) ?>" readonly="">
 									</div>
-
-
 								</div>
 
 								<?php if (isset($estacionado)) : ?>
@@ -183,7 +180,6 @@
 									</div>
 								<?php endif; ?>
 
-
 								<div class="">
 									<?php if (isset($estacionado)) : ?>
 										<input type=" hidden" name="estacionar_id" value="<?php echo $estacionado->estacionar_id ?>" />
@@ -197,32 +193,31 @@
 													<a href="<?php echo base_url($this->router->fetch_class()); ?>" class="btn btn-light">Voltar</a>
 										</div>
 
-										<div class="modal fade" id="cadastrar" tabindex="-1" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
-											<div class="modal-dialog" role="document">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h5 class="modal-title" id="demoModalLabel"><i class="ik ik-alert-octagon text-danger"></i>&nbsp;&nbsp;Confirmação de dados!</h5>
-														<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													</div>
-													<div class="modal-body">
-														<span class="text-dark font-weight-bold"><?php echo $texto_modal; ?></span></br>
-														<p></p>
-														Clique em <span class="text-primary font-weight-bold">"Sim"</span> para prosseguir.
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-success" data-dismiss="modal">Não</button>
-														<button type="submit" class="btn btn-primary mr-2" value="">Sim</button>
-													</div>
+									<div class="modal fade" id="cadastrar" tabindex="-1" role="dialog" aria-labelledby="demoModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="demoModalLabel"><i class="ik ik-alert-octagon text-danger"></i>&nbsp;&nbsp;Confirmação de dados!</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												</div>
+												<div class="modal-body">
+													<span class="text-dark font-weight-bold"><?php echo $texto_modal; ?></span></br>
+													<p></p>
+													Clique em <span class="text-primary font-weight-bold">"Sim"</span> para prosseguir.
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-success" data-dismiss="modal">Não</button>
+													<button type="submit" class="btn btn-primary mr-2" value="">Sim</button>
 												</div>
 											</div>
 										</div>
+									</div>
 							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
 
 
 		<footer class="footer">

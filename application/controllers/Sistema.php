@@ -4,7 +4,6 @@ defined('BASEPATH')  or exit('Ação não permitida');
 
 class Sistema extends CI_Controller
 {
-
 	public function _construct()
 	{
 		parent::__construct();

@@ -4,10 +4,8 @@ defined('BASEPATH') or exit("Ação nao permitida");
 
 class Precificacoes extends CI_Controller
 {
-
 	public function __construct()
 	{
-
 		parent::__construct();
 		if (!$this->ion_auth->logged_in()) {
 			redirect('login');
@@ -18,8 +16,6 @@ class Precificacoes extends CI_Controller
 			redirect('/');
 		}
 	}
-
-
 	public function index()
 	{
 
@@ -39,13 +35,6 @@ class Precificacoes extends CI_Controller
 			'precificacoes' => $this->core_model->get_all('precificacoes'),
 		);
 
-
-
-
-		//echo '<pre>';
-		//print_r($data['precificacoes']);
-		//exit();
-
 		$this->load->view('layout/header', $data);
 		$this->load->view('precificacoes/index');
 		$this->load->view('layout/footer');
@@ -60,7 +49,6 @@ class Precificacoes extends CI_Controller
 			$this->form_validation->set_rules('precificacao_valor_mensalidade', 'Valor mensalidade', 'trim|required|max_length[50]');
 			$this->form_validation->set_rules('precificacao_numero_vagas', 'Número vagas', 'trim|required|integer|greater_than[0]');
 			if ($this->form_validation->run()) {
-
 
 				$data = elements(
 					array(

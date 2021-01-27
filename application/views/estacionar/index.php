@@ -263,17 +263,12 @@
 														</div>
 													</div>
 												</div>
-
-
 											<?php endif; ?>
 										</li>
 									<?php endfor; ?>
-
 								</ul>
 							</div>
-
 						</div>
-
 
 					</div>
 					<div class="col-lg-3 col-md-4 col-6">
@@ -286,7 +281,6 @@
 								</div>
 							</div>
 							<div>
-
 								<ul class="list-inline mt-15 text-center">
 									<?php
 									$ocupadas = array(); //Armazena as vagas
@@ -316,26 +310,18 @@
 														</div>
 													</div>
 												</div>
-
-
 											<?php endif; ?>
 										</li>
 									<?php endfor; ?>
-
 								</ul>
 							</div>
-
 						</div>
-
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-</div>
+   </div>
 </div>
 
 

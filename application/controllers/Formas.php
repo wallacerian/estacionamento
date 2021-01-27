@@ -4,20 +4,16 @@ defined('BASEPATH') or exit("Ação nao permitida");
 
 class Formas extends CI_Controller
 {
-
 	public function __construct()
 	{
-
 		parent::__construct();
 		if (!$this->ion_auth->logged_in()) {
 			redirect('login');
 		}
 	}
 
-
 	public function index()
 	{
-
 		$data = array(
 			'titulo' => 'Formas de pagamento cadastradas',
 			'sub_titulo' => 'Chegou a hora de Listar  as formas de pagamentos cadastradas no banco de dados',
@@ -25,10 +21,6 @@ class Formas extends CI_Controller
 
 			'formas' => $this->core_model->get_all('formas_pagamentos'),
 		);
-
-		//echo '<pre>';
-		//print_r($data['precificacoes']);
-		//exit();
 
 		$this->load->view('layout/header', $data);
 		$this->load->view('formas/index');
@@ -67,10 +59,6 @@ class Formas extends CI_Controller
 					'icone_view' => 'fas fa-comment-dollar',
 				);
 
-				//echo '<pre>';
-				//print_r($data['forma']);
-				//exit();
-
 				$this->load->view('layout/header', $data);
 				$this->load->view('formas/core');
 				$this->load->view('layout/footer');
@@ -104,10 +92,6 @@ class Formas extends CI_Controller
 
 						'forma' => $this->core_model->get_by_id('formas_pagamentos', array('forma_pagamento_id' => $forma_pagamento_id)),
 					);
-
-					//echo '<pre>';
-					//print_r($data['forma']);
-					//exit();
 
 					$this->load->view('layout/header', $data);
 					$this->load->view('formas/core');

@@ -4,22 +4,16 @@ defined('BASEPATH') or exit("Ação nao permitida");
 
 class Estacionar extends CI_Controller
 {
-
 	public function __construct()
 	{
-
 		parent::__construct();
 		if (!$this->ion_auth->logged_in()) {
 			redirect('login');
 		}
-
 		$this->load->model('estacionar_model');
 	}
-
-
 	public function index()
 	{
-
 		$data = array(
 			'titulo' => 'Tickets de estacionamento cadastrados',
 			'sub_titulo' => 'Chegou a hora de Listar os tickets de estacionamentos',
@@ -34,27 +28,16 @@ class Estacionar extends CI_Controller
 				'plugins/datatables.net/js/estacionamento.js',
 			),
 			'estacionados' => $this->estacionar_model->get_all(),
-
 			/*Inicio numero vagas por categoria*/
-
 			'numero_vagas_pequeno' => $this->estacionar_model->get_numero_vagas(1), //Veiculo pequeno
 			'vagas_ocupadas_pequeno' => $this->core_model->get_all('estacionar', array('estacionar_status' => 0, 'estacionar_precificacao_id' => 1)),
-
-
 			'numero_vagas_medio' => $this->estacionar_model->get_numero_vagas(2), //Veiculo medio
 			'vagas_ocupadas_medio' => $this->core_model->get_all('estacionar', array('estacionar_status' => 0, 'estacionar_precificacao_id' => 2)),
-
 			'numero_vagas_grande' => $this->estacionar_model->get_numero_vagas(3), //Veiculo grande
 			'vagas_ocupadas_grande' => $this->core_model->get_all('estacionar', array('estacionar_status' => 0, 'estacionar_precificacao_id' => 3)),
-
 			'numero_vagas_moto' => $this->estacionar_model->get_numero_vagas(4), //Veiculo moto
 			'vagas_ocupadas_moto' => $this->core_model->get_all('estacionar', array('estacionar_status' => 0, 'estacionar_precificacao_id' => 4)),
 		);
-		//echo '<pre>';
-		//print_r($data['vagas_ocupadas_moto']);
-		//exit();
-
-
 		$this->load->view('layout/header', $data);
 		$this->load->view('estacionar/index');
 		$this->load->view('layout/footer');
@@ -79,7 +62,6 @@ class Estacionar extends CI_Controller
 					),
 					$this->input->post()
 				);
-
 				$data['estacionar_precificacao_id'] = intval(substr($this->input->post('estacionar_precificacao_id'), 0, 1));
 				$data['estacionar_status'] = 0; // Ao Cadastrar ticket, o valor de 'estacionar_status' fica como '0'
 
@@ -89,7 +71,6 @@ class Estacionar extends CI_Controller
 
 				$estacionar_id =  $this->session->userdata('last_id');
 				redirect($this->router->fetch_class() . '/acoes/' . $estacionar_id);
-
 				//criar metodo imprimir
 			} else {
 				//Erro de validação
@@ -98,7 +79,6 @@ class Estacionar extends CI_Controller
 					'sub_titulo' => 'chegou a hora de Cadastrar novo ticket de estacionamento',
 					'icone_view' => 'fas fa-parking',
 					'texto_modal' => 'Tem certeza que deseja Salvar este ticket? não será possivel alterá-lo',
-
 					'scripts' => array(
 						'plugins/mask/jquery.mask.min.js',
 						'plugins/mask/custom.js',
@@ -106,13 +86,6 @@ class Estacionar extends CI_Controller
 					),
 					'precificacoes' => $this->core_model->get_all('precificacoes', array('precificacao_ativa' => 1)),
 				);
-
-
-
-				// echo '<pre>';
-				// print_r($data['estacionados']);
-				// exit();
-
 				$this->load->view('layout/header', $data);
 				$this->load->view('estacionar/core');
 				$this->load->view('layout/footer');
@@ -122,7 +95,6 @@ class Estacionar extends CI_Controller
 				$this->session->set_flashdata('error', 'O Ticket não encontrado para encerramento');
 				redirect($this->router->fetch_class());
 			} else {
-
 				//encerramento do ticket
 				$estacionar_tempo_decorrido = str_replace('.', '', $this->input->post('estacionar_tempo_decorrido'));
 				//Torna a forma de pagamento obrigatória se o tempo decorrido for maior que 15 min
@@ -131,10 +103,7 @@ class Estacionar extends CI_Controller
 				} else {
 					$this->form_validation->set_rules('estacionar_forma_pagamento_id', 'Forma de pagamento', 'trim');
 				}
-
-
 				if ($this->form_validation->run()) {
-
 					//echo '<pre>';
 					//print_r($this->input->post());
 					//exit();
@@ -146,14 +115,11 @@ class Estacionar extends CI_Controller
 						),
 						$this->input->post()
 					);
-
 					if ($estacionar_tempo_decorrido <= '015') {
 						$data['estacionar_forma_pagamento_id'] = 5; /// forma de pagamento gratis
 					}
-
 					$data['estacionar_data_saida'] = date('Y-m-d H:i:s');
 					$data['estacionar_status'] = 1; //encerrrando ticket de estacionamento
-
 					$data = html_escape($data);
 
 					$this->core_model->update('estacionar', $data, array('estacionar_id' => $estacionar_id));
@@ -175,13 +141,6 @@ class Estacionar extends CI_Controller
 						'precificacoes' => $this->core_model->get_all('precificacoes', array('precificacao_ativa' => 1)),
 						'formas_pagamentos' => $this->core_model->get_all('formas_pagamentos', array('forma_pagamento_ativa' => 1)),
 					);
-
-
-
-					// echo '<pre>';
-					// print_r($data['estacionados']);
-					// exit();
-
 					$this->load->view('layout/header', $data);
 					$this->load->view('estacionar/core');
 					$this->load->view('layout/footer');
@@ -212,10 +171,8 @@ class Estacionar extends CI_Controller
 			return FALSE;
 		}
 	}
-
 	public function check_vaga_ocupada($estacionar_numero_vaga)
 	{
-
 		$estacionar_precificacao_id = intval(substr($this->input->post('estacionar_precificacao_id'), 0, 1));
 
 		if ($this->core_model->get_by_id('estacionar', array('estacionar_numero_vaga' => $estacionar_numero_vaga, 'estacionar_status' => 0, 'estacionar_precificacao_id' => $estacionar_precificacao_id))) {
@@ -228,10 +185,8 @@ class Estacionar extends CI_Controller
 			return TRUE;
 		}
 	}
-
 	public function check_placa_status_aberta($estacionar_placa_veiculo)
 	{
-
 		$estacionar_placa_veiculo = strtoupper($estacionar_placa_veiculo);
 
 		if ($this->core_model->get_by_id('estacionar', array('estacionar_placa_veiculo' => $estacionar_placa_veiculo, 'estacionar_status' => 0))) {
@@ -260,12 +215,6 @@ class Estacionar extends CI_Controller
 				'estacionado' => $this->core_model->get_by_id('estacionar', array('estacionar_id' => $estacionar_id)),
 
 			);
-
-
-
-			// echo '<pre>';
-			// print_r($data['estacionados']);
-			// exit();
 
 			$this->load->view('layout/header', $data);
 			$this->load->view('estacionar/acoes');
@@ -347,16 +296,6 @@ class Estacionar extends CI_Controller
 					 ' . $empresa->sistema_texto_ticket . '<br/>
 					 ' . date('d/m/Y H:i : s') . '<br/>
 						</h5>';
-
-
-			/*
-			   * False -> Abre no navegador
-			   * True -> Faz o dowload
-			   */
-
-			//	   echo '<pre>';
-			//	   print_r($html);
-			//	   exit();
 
 			$this->pdf->createPDF($html, $file_name, false);
 			$html .= '</html>';
