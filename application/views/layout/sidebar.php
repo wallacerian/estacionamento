@@ -1,8 +1,8 @@
 <div class="app-sidebar colored">
 	<div class="sidebar-header">
-		<a class="header-brand" href="index.html">
+		<a data-toggle="tooltip" data-placement="bottom" title="Home" class="header-brand" href="<?php echo base_url('/');?>">
 			<div class="logo-img">
-				<img src="src/img/brand-white.svg" class="header-brand-img" alt="lavalite">
+				<img src="<?php echo base_url('public/src/img/brand-white.svg'); ?>" class="header-brand-img" alt="lavalite">
 			</div>
 			<span class="text">ThemeKit</span>
 		</a>
@@ -29,7 +29,7 @@
 
 				<div class="nav-lavel">Administração</div>
 
-				<?php if (!$this->ion_auth->is_admin()) : ?>
+				<?php if ($this->ion_auth->is_admin()) : ?>
 					<div class="nav-item <?php echo ($this->router->fetch_class() == 'usuarios' && $this->router->fetch_method() == 'index' ? 'active' : ''); ?>">
 						<a data-toggle="tooltip" data-placement="bottom" title="Gerenciar sistema" href="<?php echo base_url('usuarios'); ?>"><i class="ik ik-users"></i><span>Usuários</span></a>
 					</div>

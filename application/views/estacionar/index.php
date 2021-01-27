@@ -152,7 +152,7 @@
 
 												<div class="widget social-widget <?php echo ($numero_vagas_pequeno->precificacao_ativa == 0 ? 'bg-google' : 'bg-success'); ?> vaga">
 													<div class="widget-body">
-														<div data-toggle="tooltip" data-placement="bottom" title="<?php echo ($numero_vagas_pequeno->precificacao_ativa == 0 ? 'Desativada' :  $i); ?>" class="content">
+														<div data-toggle="tooltip" data-placement="bottom" title="livre&nbsp;<?php echo ($numero_vagas_pequeno->precificacao_ativa == 0 ? 'Desativada' :  $i); ?>" class="content">
 															<div class="number"><?php echo ($numero_vagas_pequeno->precificacao_ativa == 0 ? '<i class="fas fa-ban"></i>' :  $i); ?></div>
 														</div>
 													</div>
@@ -205,7 +205,7 @@
 
 												<div class="widget social-widget <?php echo ($numero_vagas_medio->precificacao_ativa == 0 ? 'bg-google' : 'bg-success'); ?> vaga">
 													<div class="widget-body">
-														<div data-toggle="tooltip" data-placement="bottom" title="<?php echo ($numero_vagas_medio->precificacao_ativa == 0 ? 'Desativada' :  $i); ?>" class="content">
+														<div data-toggle="tooltip" data-placement="bottom" title="livre&nbsp;<?php echo ($numero_vagas_medio->precificacao_ativa == 0 ? 'Desativada' :  $i); ?>" class="content">
 															<div class="number"><?php echo ($numero_vagas_medio->precificacao_ativa == 0 ? '<i class="fas fa-ban"></i>' :  $i); ?></div>
 														</div>
 													</div>
@@ -256,7 +256,7 @@
 
 												<div class="widget social-widget <?php echo ($numero_vagas_grande->precificacao_ativa == 0 ? 'bg-google' : 'bg-success'); ?> vaga">
 													<div class="widget-body">
-														<div data-toggle="tooltip" data-placement="bottom" title="<?php echo ($numero_vagas_grande->precificacao_ativa == 0 ? 'Desativada' :  $i); ?>" class="content">
+														<div data-toggle="tooltip" data-placement="bottom" title="livre&nbsp;<?php echo ($numero_vagas_grande->precificacao_ativa == 0 ? 'Desativada' :  $i); ?>" class="content">
 															<div class="number"><?php echo ($numero_vagas_grande->precificacao_ativa == 0 ? '<i class="fas fa-ban"></i>' :  $i); ?></div>
 														</div>
 													</div>
@@ -309,7 +309,7 @@
 
 												<div class="widget social-widget <?php echo ($numero_vagas_moto->precificacao_ativa == 0 ? 'bg-google' : 'bg-success'); ?> vaga">
 													<div class="widget-body">
-														<div data-toggle="tooltip" data-placement="bottom" title="<?php echo ($numero_vagas_moto->precificacao_ativa == 0 ? 'Desativada' :  $i); ?>" class="content">
+														<div data-toggle="tooltip" data-placement="bottom" title="livre&nbsp;<?php echo ($numero_vagas_moto->precificacao_ativa == 0 ? 'Desativada' :  $i); ?>" class="content">
 															<div class="number"><?php echo ($numero_vagas_moto->precificacao_ativa == 0 ? '<i class="fas fa-ban"></i>' :  $i); ?></div>
 														</div>
 													</div>

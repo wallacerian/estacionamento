@@ -19,28 +19,28 @@
 				<div class="container">
 					<div class="apps-wrap">
 						<div class="app-item">
-							<a href="<?php echo base_url('/')?>"><i class="ik ik-home"></i><span>Home</span></a>
+							<a href="<?php echo base_url('/') ?>"><i class="ik ik-home"></i><span>Home</span></a>
 						</div>
 						<div class="app-item">
-							<a href="<?php echo base_url('estacionar')?>"><i class="fas fa-parking"></i><span>Estacionar</span></a>
+							<a href="<?php echo base_url('estacionar') ?>"><i class="fas fa-parking"></i><span>Estacionar</span></a>
 						</div>
 						<div class="app-item">
-							<a href="<?php echo base_url('mensalistas');?>"><i class="ik ik-users"></i><span>Mensalistas</span></a>
+							<a href="<?php echo base_url('mensalistas'); ?>"><i class="ik ik-users"></i><span>Mensalistas</span></a>
 						</div>
 						<div class="app-item">
-							<a href="<?php echo base_url('mensalidades');?>"><i class="fas fa-hand-holding-usd"></i><span>mensalidades</span></a>
+							<a href="<?php echo base_url('mensalidades'); ?>"><i class="fas fa-hand-holding-usd"></i><span>mensalidades</span></a>
 						</div>
 						<div class="app-item">
-							<a href="<?php echo base_url('usuarios');?>"><i class="ik ik-users"></i><span>Usuários</span></a>
+							<a href="<?php echo base_url('usuarios'); ?>"><i class="ik ik-users"></i><span>Usuários</span></a>
 						</div>
 						<div class="app-item">
-							<a href="<?php echo base_url('sistemas');?>"><i class="ik ik-settings"></i><span>Sitemas</span></a>
+							<a href="<?php echo base_url('formas'); ?>"><i class="fas fa-comment-dollar"></i><span>Formas</span></a>
 						</div>
 						<div class="app-item">
-							<a href="<?php echo base_url('precificacoes');?>"><i class="ik ik-dollar-sign"></i><span>Precificações</span></a>
+							<a href="<?php echo base_url('precificacoes'); ?>"><i class="ik ik-dollar-sign"></i><span>Precificações</span></a>
 						</div>
 						<div class="app-item">
-							<a href="<?php echo base_url('formas');?>"><i class="fas fa-comment-dollar"></i><span>Formas de pagamentos</span></a>
+							<a href="<?php echo base_url('sistemas'); ?>"><i class="ik ik-settings"></i><span>Sitema</span></a>
 						</div>
 					</div>
 				</div>

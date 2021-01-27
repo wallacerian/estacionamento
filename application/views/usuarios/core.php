@@ -78,7 +78,7 @@
 									</div>
 								</div>
 
-						    	<?php if (!$this->ion_auth->is_admin()): ?>
+						    	<?php if ($this->ion_auth->is_admin()): ?>
 									<div class="form-group row">
 										<div class="col-md-6 mb-20">
 											<label>Perfil de acesso</label>
@@ -86,8 +86,8 @@
 
 												<?php if (isset($usuario)) :  ?>
 
-													<option value="2" <?php echo ($perfil_usuario->id == 2 ? 'selected' : ''); ?>>Administrador</option>
-													<option value="1" <?php echo ($perfil_usuario->id == 1 ? 'selected' : ''); ?>>Atendente</option>
+													<option value="2" <?php echo ($perfil_usuario->id == 2 ? 'selected' : ''); ?>>Atendente</option>
+													<option value="1" <?php echo ($perfil_usuario->id == 1 ? 'selected' : ''); ?>>Administrador</option>
 
 												<?php else : ?>
 
