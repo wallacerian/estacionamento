@@ -28,15 +28,19 @@
 
 
 				<div class="nav-lavel">Administração</div>
-				<div class="nav-item <?php echo ($this->router->fetch_class() == 'usuarios' && $this->router->fetch_method() == 'index' ? 'active' : ''); ?>">
-					<a data-toggle="tooltip" data-placement="bottom" title="Gerenciar sistema" href="<?php echo base_url('usuarios'); ?>"><i class="ik ik-users"></i><span>Usuários</span></a>
-				</div>
-				<div class="nav-item <?php echo ($this->router->fetch_class() == 'sistema' && $this->router->fetch_method() == 'index' ? 'active' : ''); ?>">
-					<a data-toggle="tooltip" data-placement="bottom" title="Gerenciar usuários" href="<?php echo base_url('sistema'); ?>"><i class="ik ik-settings"></i><span>Sistema</span></a>
-				</div>
-				<div class="nav-item <?php echo ($this->router->fetch_class() == 'precificacoes' && $this->router->fetch_method() == 'index' ? 'active' : ''); ?>">
-					<a data-toggle="tooltip" data-placement="bottom" title="Gerenciar precificações" href="<?php echo base_url('precificacoes'); ?>"><i class="fas fa-dollar-sign"></i><span>precificações</span></a>
-				</div>
+
+				<?php if (!$this->ion_auth->is_admin()) : ?>
+					<div class="nav-item <?php echo ($this->router->fetch_class() == 'usuarios' && $this->router->fetch_method() == 'index' ? 'active' : ''); ?>">
+						<a data-toggle="tooltip" data-placement="bottom" title="Gerenciar sistema" href="<?php echo base_url('usuarios'); ?>"><i class="ik ik-users"></i><span>Usuários</span></a>
+					</div>
+					<div class="nav-item <?php echo ($this->router->fetch_class() == 'sistema' && $this->router->fetch_method() == 'index' ? 'active' : ''); ?>">
+						<a data-toggle="tooltip" data-placement="bottom" title="Gerenciar usuários" href="<?php echo base_url('sistema'); ?>"><i class="ik ik-settings"></i><span>Sistema</span></a>
+					</div>
+					<div class="nav-item <?php echo ($this->router->fetch_class() == 'precificacoes' && $this->router->fetch_method() == 'index' ? 'active' : ''); ?>">
+						<a data-toggle="tooltip" data-placement="bottom" title="Gerenciar precificações" href="<?php echo base_url('precificacoes'); ?>"><i class="fas fa-dollar-sign"></i><span>precificações</span></a>
+					</div>
+
+				<?php endif; ?>
 
 				<div class="nav-item <?php echo ($this->router->fetch_class() == 'formas' && $this->router->fetch_method() == 'index' ? 'active' : ''); ?>">
 					<a data-toggle="tooltip" data-placement="bottom" title="Gerenciar formas de pagamento" href="<?php echo base_url('formas'); ?>"><i class="fas fa-comment-dollar"></i><span>Formas de pagamento</span></a>

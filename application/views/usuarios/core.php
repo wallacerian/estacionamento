@@ -77,7 +77,8 @@
 										<?php echo form_error('confirmacao', '<div class="text-danger">', '</div>'); ?>
 									</div>
 								</div>
-								<?php if (!$this->ion_auth->is_admin()): ?>
+
+						    	<?php if (!$this->ion_auth->is_admin()): ?>
 									<div class="form-group row">
 										<div class="col-md-6 mb-20">
 											<label>Perfil de acesso</label>
